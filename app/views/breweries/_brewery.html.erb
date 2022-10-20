@@ -2,4 +2,12 @@
   <h2><%= brewery.name %></h2>
 
   <i>Established in <%= brewery.year %></i>
+
+  <p>Beer count: <%= brewery.beers.count %></p>
+
+  <p>
+  <% brewery.beers.each do |beer| %>
+    <%= beer.name %>
+  <% end %>
+  </p>
 </div>
