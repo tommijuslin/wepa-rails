@@ -2,6 +2,8 @@
 
 <h1>Beers</h1>
 
+<h2><%= link_to 'list of breweries', breweries_path %></h2>
+
 <div id="beers">
   <% @beers.each do |beer| %>
     <%= render beer %>
