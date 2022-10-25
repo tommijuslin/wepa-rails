@@ -2,6 +2,8 @@
 
 <h1>Breweries</h1>
 
+<h2><%= link_to "New brewery", new_brewery_path %></h2>
+
 <p>Number of breweries: <%= @breweries.count %></p>
 
 <div id="breweries">
@@ -19,5 +21,3 @@
     </div>
   <% end %>
 </div>
-
-<%= link_to "New brewery", new_brewery_path %>
