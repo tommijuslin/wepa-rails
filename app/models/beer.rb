@@ -4,7 +4,7 @@ class Beer < ApplicationRecord
 
 	def average_rating
 		sum = ratings.sum { |r| r.score }
-		return sum / ratings.count
+		sum / ratings.count
 	end
 
 	def to_s
