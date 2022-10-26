@@ -1,1 +1,1 @@
-https://still-garden-29680.herokuapp.com/breweries
+https://solitary-shape-5332.fly.dev/
