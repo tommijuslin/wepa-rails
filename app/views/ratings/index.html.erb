@@ -3,7 +3,7 @@
 <h2><%= link_to 'New rating', new_rating_path %></h2>
 
 <ul>
- <% @ratings.each do |rating| %>
-   <li><%= render rating %> <%= button_to 'delete', rating, method: :delete, form: { data: { turbo_confirm: 'Are you sure?' } } %></li>
- <% end %>
+  <% @ratings.each do |rating| %>
+    <li><%= render rating %> <%= button_to 'delete', rating, method: :delete, form: { data: { turbo_confirm: 'Are you sure?' } } %></li>
+  <% end %>
 </ul>
