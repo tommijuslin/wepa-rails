@@ -1,0 +1,30 @@
+<div id="<%= dom_id beer_club %>">
+  <p>
+    <strong>Name:</strong>
+    <%= beer_club.name %>
+  </p>
+
+  <p>
+    <strong>Founded:</strong>
+    <%= beer_club.founded %>
+  </p>
+
+  <p>
+    <strong>City:</strong>
+    <%= beer_club.city %>
+  </p>
+
+  <% if beer_club.members.empty? %>
+    <p>Club has no members</p>
+  <% else %>
+    <p>
+      <strong>Members:</strong>
+    </p>
+
+    <ul>
+      <% beer_club.members.each do |member| %>
+        <li><%= member %></li>
+      <% end %>
+    </ul>
+  <% end %>
+</div>

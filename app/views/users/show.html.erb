@@ -6,19 +6,19 @@
   </h3>
 
   <p>
-    <%= current_user.username %>
+    <%= @user.username %>
   </p>
 
   <p>
-    <% if current_user.ratings.empty? %>
+    <% if @user.ratings.empty? %>
       Has not yet rated any beers.
     <% else %>
-      Has made <%= pluralize(current_user.ratings.count, 'rating') %>, average rating <%= current_user.average_rating %>
+      Has made <%= pluralize(@user.ratings.count, 'rating') %>, average rating <%= @user.average_rating %>
     <% end %>
   </p>
 
   <ul>
-    <% current_user.ratings.each do |rating| %>
+    <% @user.ratings.each do |rating| %>
       <li><%= rating %> <%= button_to 'delete', rating, method: :delete, data: { turbo_confirm: 'Are you sure?' } %></li>
     <% end %>
   </ul>
