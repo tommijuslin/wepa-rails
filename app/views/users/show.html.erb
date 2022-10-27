@@ -9,19 +9,31 @@
     <%= @user.username %>
   </p>
 
-  <p>
-    <% if @user.ratings.empty? %>
-      Has not yet rated any beers.
-    <% else %>
-      Has made <%= pluralize(@user.ratings.count, 'rating') %>, average rating <%= @user.average_rating %>
-    <% end %>
-  </p>
+  <% if @user.ratings.empty? %>
+    <p>Has not yet rated any beers.</p>
+  <% else %>
+    <p>Has made <%= pluralize(@user.ratings.count, 'rating') %>, average rating <%= @user.average_rating %></p>
+  <% end %>
 
-  <ul>
-    <% @user.ratings.each do |rating| %>
-      <li><%= rating %> <%= button_to 'delete', rating, method: :delete, data: { turbo_confirm: 'Are you sure?' } %></li>
-    <% end %>
-  </ul>
+  <% if @user.memberships.empty? %>
+    <p>Has not yet joined any clubs.</p>
+  <% else %>
+    <h4>member of:</h4>
+    <ul>
+      <% @user.memberships.each do |membership| %>
+        <li><%= membership %></li>
+      <% end %>
+    </ul>
+  <% end %>
+
+  <% unless @user.ratings.empty? %>
+    <h4>ratings:</h4>
+    <ul>
+      <% @user.ratings.each do |rating| %>
+        <li><%= rating %> <%= button_to 'delete', rating, method: :delete, data: { turbo_confirm: 'Are you sure?' } %></li>
+      <% end %>
+    </ul>
+  <% end %>
 
   <%= link_to "Edit this user", edit_user_path(@user) %> |
   <%= link_to "Back to users", users_path %>

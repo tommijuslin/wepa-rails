@@ -4,6 +4,7 @@ class User < ApplicationRecord
   has_many :memberships
   has_many :ratings
   has_many :beers, through: :ratings
+  has_many :clubs, through: :memberships, source: :beer_club
 
   validates :username, uniqueness: true,
                        length: { in: 3..30 }
