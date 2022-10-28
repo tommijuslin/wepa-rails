@@ -30,13 +30,21 @@
     <h4>ratings:</h4>
     <ul>
       <% @user.ratings.each do |rating| %>
-        <li><%= rating %> <%= button_to 'delete', rating, method: :delete, data: { turbo_confirm: 'Are you sure?' } %></li>
+        <li><%= rating %>
+          <% if @user == current_user %>
+          <div style="display: inline-block;">
+            <%= button_to 'delete', rating, method: :delete, data: { turbo_confirm: 'Are you sure?' } %>
+          </div>
+          <% end %>
+        </li>
       <% end %>
     </ul>
   <% end %>
 
-  <%= link_to "Edit this user", edit_user_path(@user) %> |
   <%= link_to "Back to users", users_path %>
 
-  <%= button_to "Destroy this user", @user, method: :delete %>
+  <% if @user == current_user %>
+    | <%= link_to "Edit this user", edit_user_path(@user) %>
+    <%= button_to "Destroy this user", @user, method: :delete, data: { turbo_confirm: 'Are you sure?' } %>
+  <% end %>
 </div>
