@@ -13,12 +13,14 @@
     <p>Has not yet rated any beers.</p>
   <% else %>
     <p>Has made <%= pluralize(@user.ratings.count, 'rating') %>, average rating <%= @user.average_rating %></p>
+    <p>Favorite beer style: <%= @user.favorite_style %></p>
   <% end %>
+
 
   <% if @user.memberships.empty? %>
     <p>Has not yet joined any clubs.</p>
   <% else %>
-    <h4>member of:</h4>
+    <h4>member of</h4>
     <ul>
       <% @user.memberships.each do |membership| %>
         <li><%= membership %></li>
@@ -27,7 +29,7 @@
   <% end %>
 
   <% unless @user.ratings.empty? %>
-    <h4>ratings:</h4>
+    <h4>ratings</h4>
     <ul>
       <% @user.ratings.each do |rating| %>
         <li><%= rating %>
