@@ -29,7 +29,16 @@ class User < ApplicationRecord
     return nil if ratings.empty?
 
     scores = ratings.group_by { |r| r.beer.style }
-                    .transform_values { |values| values.sum(&:score) / values.count.to_f }
+                    .transform_values { |v| v.sum(&:score) / v.count.to_f }
+
+    scores.max_by(&:last).first
+  end
+
+  def favorite_brewery
+    return nil if ratings.empty?
+
+    scores = ratings.group_by { |r| r.beer.brewery.name }
+                    .transform_values { |v| v.sum(&:score) / v.count.to_f }
 
     scores.max_by(&:last).first
   end
