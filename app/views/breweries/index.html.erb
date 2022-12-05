@@ -2,7 +2,7 @@
 
 <h1>Listing breweries</h1>
 
-<h3><%= link_to "New brewery", new_brewery_path %></h3>
+<%= link_to('New Brewery', new_brewery_path) if current_user %>
 
 <p>Number of breweries: <%= @breweries.count %></p>
 

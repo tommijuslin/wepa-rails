@@ -2,6 +2,8 @@
 
 <h1>Beer clubs</h1>
 
+<%= link_to('New Beer Club', new_beer_club_path) if current_user %>
+
 <div id="beer_clubs">
   <% @beer_clubs.each do |beer_club| %>
     <p>
@@ -21,4 +23,3 @@
   <% end %>
 </div>
 
-<%= link_to "New beer club", new_beer_club_path %>

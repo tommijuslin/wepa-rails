@@ -1,7 +1,12 @@
 require 'rails_helper'
 
+include Helpers
+
 describe "Beer" do
+  let!(:user) { FactoryBot.create :user }
+
   before :each do
+    sign_in(username: "Pekka", password: "Foobar1")
     FactoryBot.create :brewery
   end
 
