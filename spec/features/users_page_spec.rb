@@ -43,4 +43,18 @@ describe "User" do
     expect(page).to have_content "#{rating.beer.name} #{rating.score}"
     expect(page).not_to have_content "#{other_rating.beer.name} #{other_rating.score}"
   end
+
+  it "page shows the user's favourite style" do
+    beer = create_beer_with_rating({ user: user }, "Lager", "anonymous", 25)
+    visit user_path(user)
+
+    expect(page).to have_content "Favorite beer style: #{beer.style}"
+  end
+
+  it "page shows the user's favourite brewery" do
+    beer = create_beer_with_rating({ user: user }, "Lager", "anonymous", 25)
+    visit user_path(user)
+
+    expect(page).to have_content "Favorite brewery: #{beer.brewery.name}"
+  end
 end
