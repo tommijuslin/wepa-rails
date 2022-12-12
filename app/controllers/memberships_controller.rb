@@ -54,7 +54,7 @@ class MembershipsController < ApplicationController
     @membership.destroy
 
     respond_to do |format|
-      format.html { redirect_to memberships_url, notice: "Membership was successfully destroyed." }
+      format.html { redirect_to user_url(current_user.id), notice: "Membership in #{@membership.beer_club.name} ended." }
       format.json { head :no_content }
     end
   end
@@ -68,6 +68,6 @@ class MembershipsController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def membership_params
-    params.require(:membership).permit(:beer_club_id)
+    params.require(:membership).permit(:beer_club_id, :membership_id)
   end
 end

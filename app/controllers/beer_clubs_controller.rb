@@ -12,6 +12,9 @@ class BeerClubsController < ApplicationController
     @membership = Membership.new
     @membership.user = @current_user
     @member = @beer_club.members.include? current_user
+    return unless @member
+
+    @membership_id = @beer_club.memberships.find{ |m| m.user == current_user }.id
   end
 
   # GET /beer_clubs/new
