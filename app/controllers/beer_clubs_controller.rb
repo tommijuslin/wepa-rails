@@ -11,6 +11,7 @@ class BeerClubsController < ApplicationController
   def show
     @membership = Membership.new
     @membership.user = @current_user
+    @member = @beer_club.members.include? current_user
   end
 
   # GET /beer_clubs/new
