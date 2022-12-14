@@ -1,22 +1,22 @@
 module Helpers
-
   def sign_in(credentials)
     visit signin_path
-    fill_in('username', with:credentials[:username])
-    fill_in('password', with:credentials[:password])
+    fill_in('username', with: credentials[:username])
+    fill_in('password', with: credentials[:password])
     click_button('Log in')
   end
-
-  def create_beer_with_rating(object, style, brewery, score)
-    brewery = FactoryBot.create(:brewery, name: brewery)
+  
+  def create_beer_with_rating(object, score)
+    style = FactoryBot.create(:style, name: object[:style])
+    brewery = FactoryBot.create(:brewery, name: object[:brewery])
     beer = FactoryBot.create(:beer, style: style, brewery: brewery)
     FactoryBot.create(:rating, beer: beer, score: score, user: object[:user] )
     beer
   end
   
-  def create_beers_with_many_ratings(object, style, brewery, *scores)
+  def create_beers_with_many_ratings(object, *scores)
     scores.each do |score|
-      create_beer_with_rating(object, style, brewery, score)
+      create_beer_with_rating(object, score)
     end
   end
 end

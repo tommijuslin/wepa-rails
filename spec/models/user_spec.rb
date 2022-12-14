@@ -59,14 +59,14 @@ RSpec.describe User, type: :model do
     end
 
     it "is the only rated if only one rating" do
-      beer = create_beer_with_rating({ user: user }, "Lager", "anonymous", 25)
+      beer = create_beer_with_rating({ user: user, brewery: "anonymous" }, 25)
 
       expect(user.favorite_beer).to eq(beer)
     end
 
     it "is the one with highest rating if several rated" do
-      create_beers_with_many_ratings({user: user}, "Lager", "anonymous", 10, 20, 15, 7, 9)
-      best = create_beer_with_rating({ user: user }, "Lager", "anonymous", 25)
+      create_beers_with_many_ratings({user: user, brewery: "anonymous" }, 10, 20, 15, 7, 9)
+      best = create_beer_with_rating({ user: user, brewery: "anonymous" }, 25)
     
       expect(user.favorite_beer).to eq(best)
     end
@@ -84,18 +84,17 @@ RSpec.describe User, type: :model do
     end
 
     it "is the only rated if only one rating" do
-      beer = create_beer_with_rating({ user: user }, "Lager", "anonymous", 25)
+      beer = create_beer_with_rating({ user: user, style: "Lager", brewery: "anonymous" }, 25)
 
-      expect(user.favorite_style).to eq(beer.style)
+      expect(user.favorite_style.name).to eq(beer.style.name)
     end
 
     it "is the one with highest average rating if several rated" do
-      create_beers_with_many_ratings({ user: user }, "IPA", "anonymous", 1, 1, 40)
-      create_beers_with_many_ratings({ user: user }, "Porter", "anonymous", 10, 15, 20)
-      create_beers_with_many_ratings({ user: user }, "Lager", "anonymous", 30, 35)
-      beer = create_beer_with_rating({ user: user }, "Lager", "anonymous", 39)
+      create_beers_with_many_ratings({ user: user, brewery: "anonymous" }, 1, 40)
+      create_beers_with_many_ratings({ user: user, brewery: "anonymous" }, 10)
+      beer = create_beer_with_rating({ user: user, brewery: "anonymous" }, 39)
 
-      expect(user.favorite_style).to eq(beer.style)
+      expect(user.favorite_style.name).to eq(beer.style.name)
     end
   end
 
@@ -111,17 +110,17 @@ RSpec.describe User, type: :model do
     end
 
     it "is the only rated if only one rating" do
-      beer = create_beer_with_rating({ user: user }, "Lager", "anonymous", 25)
+      beer = create_beer_with_rating({ user: user, brewery: "anonymous" }, 25)
 
       expect(user.favorite_brewery).to eq(beer.brewery.name)
     end
 
     it "is the one with the highest average if several rated" do
-      create_beers_with_many_ratings({ user: user }, "Lager", "brewery3", 10, 10, 10)
-      create_beers_with_many_ratings({ user: user }, "Lager", "brewery2", 1, 1, 40)
-      create_beers_with_many_ratings({ user: user }, "Lager", "brewery1", 20, 20, 39)
+      create_beers_with_many_ratings({ user: user, brewery: "brewery1" }, 10, 10, 10)
+      create_beers_with_many_ratings({ user: user, brewery: "brewery2" }, 1, 1, 40)
+      create_beers_with_many_ratings({ user: user, brewery: "brewery3" }, 20, 20, 39)
 
-      expect(user.favorite_brewery).to eq("brewery1")
+      expect(user.favorite_brewery).to eq("brewery3")
     end
   end
 end

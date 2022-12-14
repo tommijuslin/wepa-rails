@@ -8,6 +8,7 @@ describe "Beer" do
   before :each do
     sign_in(username: "Pekka", password: "Foobar1")
     FactoryBot.create :brewery
+    FactoryBot.create :style
   end
 
   it "with a valid name is added to the system" do
