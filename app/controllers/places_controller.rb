@@ -12,6 +12,8 @@ class PlacesController < ApplicationController
     if @places.empty?
       redirect_to places_path, notice: "No locations in #{params[:city]}"
     else
+      @city = params[:city].capitalize
+      @weather = WeatherstackApi.weather_in(params[:city])
       session[:city] = params[:city]
       render :index, status: 418
     end
