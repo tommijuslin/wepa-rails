@@ -36,7 +36,7 @@
         <li><%= rating %>
           <% if @user == current_user %>
           <div style="display: inline-block;">
-            <%= button_to 'delete', rating, method: :delete, data: { turbo_confirm: 'Are you sure?' } %>
+            <%= button_to 'delete', rating, method: :delete, data: { turbo_confirm: 'Are you sure?' }, class:"btn btn-danger" %>
           </div>
           <% end %>
         </li>
@@ -48,6 +48,6 @@
 
   <% if @user == current_user %>
     | <%= link_to "Edit this user", edit_user_path(@user) %>
-    <%= button_to "Destroy this user", @user, method: :delete, data: { turbo_confirm: 'Are you sure?' } %>
+    <%= button_to "Destroy this user", @user, method: :delete, data: { turbo_confirm: 'Are you sure?' }, class:"btn btn-danger" %>
   <% end %>
 </div>

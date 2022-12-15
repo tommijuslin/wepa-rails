@@ -14,7 +14,7 @@ describe "Beer" do
   it "with a valid name is added to the system" do
     visit new_beer_path
     fill_in('beer_name', with: "Karhu")
-    click_button('Create Beer')
+    click_button('Create beer')
 
     expect(page).to have_content "Beer was successfully created."
     expect(Beer.count).to eq(1)
@@ -22,7 +22,7 @@ describe "Beer" do
 
   it "without a valid name is not added to the system" do
     visit new_beer_path
-    click_button('Create Beer')
+    click_button('Create beer')
 
     expect(page).to have_content "Name can't be blank"
     expect(Beer.count).to eq(0)

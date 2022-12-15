@@ -28,7 +28,7 @@ describe "User" do
     fill_in('user_password_confirmation', with: 'Secret55')
 
     expect{
-      click_button('Create User')
+      click_button('Sign up')
     }.to change{User.count}.by(1)
   end
 

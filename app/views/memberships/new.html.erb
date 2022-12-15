@@ -13,6 +13,10 @@
     </div>
   <% end %>
 
-  <%= f.select :beer_club_id, options_from_collection_for_select(@beer_clubs, :id, :name) %>
-  <%= f.submit "Join" %>
+  <% if @beer_clubs.empty? %>
+    No beer clubs to join
+  <% else %>
+    <%= f.select :beer_club_id, options_from_collection_for_select(@beer_clubs, :id, :name) %>
+    <%= f.submit "Join" %>
+  <% end %>
 <% end %>
