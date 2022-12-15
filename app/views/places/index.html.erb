@@ -2,10 +2,15 @@
 
 <p id="notice"><%= notice %></p>
 
-<%= form_with url: places_path, method: :post do |form| %>
-  city <%= form.text_field :city %>
-  <%= form.submit "Search", class:"btn btn-primary" %>
-<% end %>
+<div class="mb-3">
+  <%= form_with url: places_path, method: :post do |form| %>
+    <%= form.label :city, { class: "form-label" } %>
+    <%= form.text_field :city, { class: "form-control" } %>
+</div>
+<div>
+    <%= form.submit "Search", class:"btn btn-primary" %>
+  <% end %>
+</div>
 
 <% if @places %>
   <% if @weather %>
