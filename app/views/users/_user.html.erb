@@ -1,6 +1,15 @@
 <div id="<%= dom_id user %>">
-  <p>
-    <strong>Username:</strong>
-    <%= user.username %>
-  </p>
+<h2><%= user.username %></h2>
+  <% if !user.active %>
+    <div class="badge bg-primary">
+      closed
+    </div>
+  <% end %>
+  <% if user.ratings.empty? %>
+    <p>Has not yet rated any beers.</p>
+  <% else %>
+    <p>Has made <%= pluralize(user.ratings.count, 'rating') %>, average rating <%= round(user.average_rating) %></p>
+    <p>Favorite beer style: <%= user.favorite_style.name %></p>
+    <p>Favorite brewery: <%= user.favorite_brewery %></p>
+  <% end %>
 </div>

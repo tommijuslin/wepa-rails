@@ -1,20 +1,11 @@
 <div>
-  <h3>
-    <strong>Username:</strong>
-  </h3>
+  <%= render @user %>
 
-  <p>
-    <%= @user.username %>
-  </p>
-
-  <% if @user.ratings.empty? %>
-    <p>Has not yet rated any beers.</p>
-  <% else %>
-    <p>Has made <%= pluralize(@user.ratings.count, 'rating') %>, average rating <%= round(@user.average_rating) %></p>
-    <p>Favorite beer style: <%= @user.favorite_style.name %></p>
-    <p>Favorite brewery: <%= @user.favorite_brewery %></p>
+  <% if !current_user.nil? && current_user.admin? %>
+    <%= link_to @user.active? ? "Close account" : "Activate account", toggle_status_user_path(@user.id), 
+                                                                      data: {turbo_method: "post"},
+                                                                      class: @user.active? ? "btn btn-danger" : "btn btn-primary" %>
   <% end %>
-
 
   <% if @user.memberships.empty? %>
     <p>Has not yet joined any clubs.</p>

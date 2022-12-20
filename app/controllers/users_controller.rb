@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   before_action :set_user, only: %i[show edit update destroy]
+  before_action :ensure_that_admin, only: [:toggle_status]
 
   # GET /users or /users.json
   def index
@@ -25,6 +26,7 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       if @user.save
+        @user.update_attribute :active, true
         format.html { redirect_to user_url(@user), notice: "User was successfully created." }
         format.json { render :show, status: :created, location: @user }
       else
@@ -56,6 +58,15 @@ class UsersController < ApplicationController
       format.html { redirect_to users_url, notice: "User was successfully destroyed." }
       format.json { head :no_content }
     end
+  end
+
+  def toggle_status
+    user = User.find(params[:id])
+    user.update_attribute :active, !user.active
+
+    new_status = user.active? ? "active" : "closed"
+
+    redirect_to user, notice: "user status changed to #{new_status}"
   end
 
   private
