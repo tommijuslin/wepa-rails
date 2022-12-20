@@ -42,4 +42,9 @@ class User < ApplicationRecord
 
     scores.max_by(&:last).first
   end
+
+  def self.top(number)
+    sorted_by_rating_in_desc_order = User.all.sort_by(&:average_rating).reverse!
+    sorted_by_rating_in_desc_order.take(number)
+  end
 end

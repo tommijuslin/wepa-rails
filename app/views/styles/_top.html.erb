@@ -1,0 +1,13 @@
+<h3>Top styles</h3>
+<table class="table">
+  <thead>
+    <th>Style</th>
+    <th>Average</th>
+  </thead>
+  <% @top_styles.each do |style| %>
+    <tr>
+      <td><%= style.name %></td>
+      <td><%= number_with_precision(style.average_rating , :precision => 1) %></td>
+    </tr>
+  <% end %>
+</table>
