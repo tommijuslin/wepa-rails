@@ -33,10 +33,11 @@
     <h4>ratings</h4>
     <ul>
       <% @user.ratings.each do |rating| %>
-        <li><%= rating %>
+        <li>
+          <%= rating %>
+          <div class="my-1" style="display: inline-block;">
           <% if @user == current_user %>
-          <div style="display: inline-block;">
-            <%= button_to 'delete', rating, method: :delete, data: { turbo_confirm: 'Are you sure?' }, class:"btn btn-danger" %>
+            <%= button_to 'delete', rating, method: :delete, data: { turbo_confirm: 'Are you sure?' }, class:"btn btn-outline-danger" %>
           </div>
           <% end %>
         </li>
