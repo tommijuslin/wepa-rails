@@ -1,0 +1,13 @@
+<h3>Top breweries</h3>
+<table class="table">
+  <thead>
+    <th>Brewery</th>
+    <th>Average</th>
+  </thead>
+  <% @top_breweries.each do |brewery| %>
+    <tr>
+      <td><%= brewery.name %></td>
+      <td><%= number_with_precision(brewery.average_rating , :precision => 1) %></td>
+    </tr>
+  <% end %>
+</table>

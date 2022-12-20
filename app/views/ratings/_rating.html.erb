@@ -1,3 +1,7 @@
 <div id="<%= dom_id rating %>">
-	<%= rating.beer.name << " " << rating.score.to_s %>
+	<%= rating.beer.name %>
+	<span class="badge bg-primary">
+		<%= rating.score %>
+	</span>
+	<%= rating.created_at.strftime("%m/%d/%Y, %H:%M") %> <%= link_to rating.user.username, user_path(rating.user.id) %>
 </div>
