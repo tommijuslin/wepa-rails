@@ -7,7 +7,7 @@
   <% @top_styles.each do |style| %>
     <tr>
       <td><%= style.name %></td>
-      <td><%= number_with_precision(style.average_rating , :precision => 1) %></td>
+      <td><%= round(style.average_rating) %></td>
     </tr>
   <% end %>
 </table>

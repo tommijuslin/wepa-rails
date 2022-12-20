@@ -17,7 +17,7 @@
         <td><%= link_to beer.name, beer %></td>
         <td><%= link_to beer.style.name, beer.style %></td>
         <td><%= link_to beer.brewery.name, beer.brewery %></td>
-        <td><%= number_with_precision(beer.average_rating , :precision => 1) %></td>
+        <td><%= round(beer.average_rating) %></td>
       </tr>
     <% end %>
   </table>

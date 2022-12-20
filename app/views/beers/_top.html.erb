@@ -7,7 +7,7 @@
   <% @top_beers.each do |beer| %>
     <tr>
       <td><%= beer.name %></td>
-      <td><%= number_with_precision(beer.average_rating , :precision => 1) %></td>
+      <td><%= round(beer.average_rating) %></td>
     </tr>
   <% end %>
 </table>
