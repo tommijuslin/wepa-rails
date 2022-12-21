@@ -4,6 +4,7 @@ include Helpers
 
 describe "User" do
   let!(:user) { FactoryBot.create :user }
+  let!(:lager) { FactoryBot.create(:style) }
 
   describe "who has signed up" do
     it "can signin with right credentials" do
@@ -45,14 +46,14 @@ describe "User" do
   end
 
   it "page shows the user's favourite style" do
-    beer = create_beer_with_rating({ user: user, style: "Lager", brewery: "anonymous" }, 25)
+    beer = create_beer_with_rating({ user: user, style: lager }, 25)
     visit user_path(user)
 
     expect(page).to have_content "Favorite beer style: #{beer.style.name}"
   end
 
   it "page shows the user's favourite brewery" do
-    beer = create_beer_with_rating({ user: user, brewery: "brewery1" }, 25)
+    beer = create_beer_with_rating({ user: user, style: lager }, 25)
     visit user_path(user)
 
     expect(page).to have_content "Favorite brewery: #{beer.brewery.name}"

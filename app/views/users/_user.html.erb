@@ -10,6 +10,6 @@
   <% else %>
     <p>Has made <%= pluralize(user.ratings.count, 'rating') %>, average rating <%= round(user.average_rating) %></p>
     <p>Favorite beer style: <%= user.favorite_style.name %></p>
-    <p>Favorite brewery: <%= user.favorite_brewery %></p>
+    <p>Favorite brewery: <%= user.favorite_brewery.name %></p>
   <% end %>
 </div>

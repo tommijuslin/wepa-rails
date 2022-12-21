@@ -26,21 +26,26 @@ class User < ApplicationRecord
   end
 
   def favorite_style
-    return nil if ratings.empty?
-
-    scores = ratings.group_by { |r| r.beer.style }
-                    .transform_values { |v| v.sum(&:score) / v.count.to_f }
-
-    scores.max_by(&:last).first
+    favorite(:style)
   end
 
   def favorite_brewery
+    favorite(:brewery)
+  end
+
+  def favorite(grouped_by)
     return nil if ratings.empty?
 
-    scores = ratings.group_by { |r| r.beer.brewery.name }
-                    .transform_values { |v| v.sum(&:score) / v.count.to_f }
+    grouped_ratings = ratings.group_by{ |r| r.beer.send(grouped_by) }
+    averages = grouped_ratings.map do |group, ratings|
+      { group:, score: average_of(ratings) }
+    end
 
-    scores.max_by(&:last).first
+    averages.max_by{ |r| r[:score] }[:group]
+  end
+
+  def average_of(ratings)
+    ratings.sum(&:score).to_f / ratings.count
   end
 
   def self.top(number)
